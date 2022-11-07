@@ -1,7 +1,7 @@
 import streamlit
 #import pandas 
 import requests 
-#import snowflake.connector 
+import snowflake.connector 
 from urllib.error import URLError
 
 streamlit.title('My Parents New Healthy Diner')
@@ -45,18 +45,17 @@ except URLError as e:
 
 
 
+add_my_fruit=streamlit.text_input('What fruit would you like to add?')
+streamlit.write('Thank you for adding',add_my_fruit) 
+
 
  
 
 
- 
 
 
 
-#don't run anything past here while we trouble shoot  
-streamlit.stop()
 
-import snowflake.connector
 
 
 
@@ -73,9 +72,12 @@ if streamlit.button('Get Fruit Load List'):
     my_data_rows=get_fruit_load_list()   
     streamlit.dataframe(my_data_rows)
 
-add_my_fruit=streamlit.text_input('What fruit would you like to add?','kiwi')
 
-streamlit.write('Thank you for adding',add_my_fruit)
 
+
+
+
+
+#don't run anything past here while we trouble shoot  
+streamlit.stop()
 my_cur.execute("insert into fruit_load_list values ('from streamlit')")
-
